@@ -1,0 +1,18 @@
+!!! XML
+!!!
+
+%html
+  %head
+    = stylesheet_link_tag 'application', 'theme', :media => :all
+    = javascript_include_tag 'application', 'theme'
+    = stylesheet_link_tag 'mobile', :media => mobile_stylesheet_media("only screen and (max-device-width: 960px)")
+    = stylesheet_link_tag 'print', :media => :print
+    = stylesheet_link_tag 'site', :media => :all
+  %body.events_index.events_controller.widget
+    .events-view
+      %h2
+        = @current_site.name
+        %ul.view-switcher
+          %li= link_to 'Calendar', '#', :class => 'switch-calendar'
+          %li= link_to 'List', '#', :class => 'switch-list selected'
+      = render 'calendar', :events => @events, :start_date => @start_date, :end_date => @end_date

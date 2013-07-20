@@ -42,3 +42,5 @@ $ ->
     if document.width > 820 and $.cookie('events_view') != 'list'
       $('.switch-calendar').click()
   $(window).trigger('resize')
+
+  $('a').attr('target', '_blank');

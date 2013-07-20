@@ -18,6 +18,19 @@ class EventsController < ApplicationController
     render_events(@events)
   end
 
+  def widget
+    @start_date = date_or_default_for(:start)
+    @end_date = date_or_default_for(:end)
+
+    query = Event.non_duplicates.ordered_by_ui_field(params[:order]).includes(:venue, :tags)
+    @events = query.within_dates(@start_date, @end_date)
+
+    @perform_caching = params[:order].blank? && params[:date].blank?
+    @custom_content = true
+
+    render :widget, :layout => false
+  end
+
   # GET /events/1
   # GET /events/1.xml
   def show

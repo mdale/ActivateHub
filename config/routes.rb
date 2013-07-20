@@ -16,6 +16,7 @@ Calagator::Application.routes.draw do
         post :squash_multiple_duplicates
         get :search
         get :duplicates
+        get :widget
       end
 
       member do
